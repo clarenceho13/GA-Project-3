@@ -1,4 +1,5 @@
 import Navbar from "../Navbar/Navbar";
+import BookingTable from "./BookingTable";
 
 function Booking() {
   return (
@@ -13,7 +14,9 @@ function Booking() {
         <div className="calenderheader container">
           <h2>Bookings</h2>
         </div>
-        <div className="calenderbody container"></div>
+        <div className="calenderbody container">
+          <BookingTable />
+        </div>
       </div>
     </div>
   );
