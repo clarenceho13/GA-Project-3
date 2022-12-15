@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan"); 
 const path = require("path");
-const session = require("express-session"); 
+//const session = require("express-session"); 
 
 //? xxxController = require("filelocation")
 const bookingController= require("./controllers/bookingController/bookingController");
@@ -16,6 +16,8 @@ const bookingController= require("./controllers/bookingController/bookingControl
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 const MONGO_URI = process.env.MONGO_URI;
+
+console.log("MONGO_URI", MONGO_URI);
 mongoose.set("strictQuery", false);
 mongoose.set("runValidators", true);
 mongoose.set("debug", true);

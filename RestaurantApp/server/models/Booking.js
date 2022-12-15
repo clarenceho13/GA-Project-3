@@ -1,5 +1,6 @@
 //! Schema Template
 const mongoose = require("mongoose");
+
 const bookingSchema = new mongoose.Schema(
   {
     name:{type: String, minValue: 3, maxValue: 20, required: true},
