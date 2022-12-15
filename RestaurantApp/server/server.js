@@ -5,7 +5,12 @@ const mongoose = require("mongoose");
 const morgan = require("morgan"); 
 const path = require("path");
 const session = require("express-session"); 
+
 //? xxxController = require("filelocation")
+const bookingController= require("./controllers/bookingController/bookingController");
+
+
+
 
 //! CONFIGURATION AND CONNECTION
 const app = express();
@@ -20,10 +25,13 @@ mongoose.connect(MONGO_URI);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static("../client/dist"));
-//? app.use("/path", xxxController);
+//app.use("/path", xxxController);
+app.use("/api/booking", bookingController);
+
+
 
 //! TESTING
-app.get("/api", (req, res) => {
+app.get("/api/", (req, res) => {
 res.json({ msg: "Hello World!" });
 });
 
