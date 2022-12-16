@@ -1,6 +1,6 @@
 const express = require("express");
 const Booking = require("../../models/Booking");
-const seed = require("../bookingSeed/bookingSeed");
+const seed = require("../bookingSeed/bookingSeed"); //export seed to controller
 
 const router = express.Router();
 
@@ -31,11 +31,26 @@ router.delete("/:id", async (req, res) => {
 //! Create data
 router.post("/", async (req, res) => {
   try {
+    console.log("body",req.body)
     const booking = await Booking.create(req.body);
     res.status(201).json(booking);
   } catch (error) {
     res.status(500).json({ error });
   }
 });
+
+//! Update data
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const booking = await Booking.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.json(booking);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 
 module.exports = router;

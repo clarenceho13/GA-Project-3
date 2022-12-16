@@ -9,7 +9,7 @@ const bookingSchema = new mongoose.Schema(
     pax: { type: Number, minValue: 1, required: true },
     date: String,
     time: String,
-    booked: { type: Boolean },
+    booked: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

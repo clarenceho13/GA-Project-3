@@ -4,16 +4,22 @@ import { useState } from "react";
 import ReactModal from "react-modal";
 import { useNavigate } from "react-router-dom";
 
+//Create booking page not yet completed (Clarence)
+//Able to key in details, but information did not show up
 function MainOutlet() {
   // const [date, setDate] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [hp, setHp] = useState("");
-  const [email, setEmail] = useState("");
-  const [pax, setPax] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [booked, setBooked] = useState(false);
+  const[booking,setBooking] = useState(
+    {
+    name: "",
+    hp: "",
+    email: "",
+    pax: "",
+    date: "",
+    time: "",
+    booked: false,
+  }) //*must follow your schema's structure 
+  const [msg, setMsg] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,17 +29,45 @@ function MainOutlet() {
 
   const createBooking = async (event) => {
     event.preventDefault();
+    //state called booking
+    setBooking(
+      { 
+      name:console.log(event.target[0].value),
+      hp:console.log(event.target[1].value),
+      email:console.log(event.target[2].value),
+      pax:console.log(event.target[3].value),
+      date:console.log(event.target[4].value),
+      time:console.log(event.target[5].value),
+      booked:true 
+      }
+      )
     setModalIsOpen(false);
     navigate("/Booking");
-    setName(event.target[0].value);
-    setHp(event.target[1].value);
-    setEmail(event.target[2].value);
-    setPax(event.target[3].value);
-    setDate(event.target[4].value);
-    setTime(event.target[5].value);
-    setBooked(true);
-    return console.log("booking created");
+ 
+
+    console.log(booking)
+
+    const info = { booking };
+
+    try {
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(info),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      setMsg("something went wrong");
+    }
   };
+    
+  
 
   return (
     <div>
@@ -95,24 +129,25 @@ function MainOutlet() {
             onRequestClose={() => setModalIsOpen(false)}
           >
             <form onSubmit={createBooking}>
-              Name:<input type="text" value=""></input>
+              Name:<input type="text" defaultValue=""></input>
               <br />
-              HP:<input type="number" value=""></input>
+              HP:<input type="number" defaultValue=""></input>
               <br />
-              Email:<input type="email" value=""></input>
+              Email:<input type="email" defaultValue=""></input>
               <br />
-              Pax:<input type="number" value=""></input>
+              Pax:<input type="number" defaultValue=""></input>
               <br />
-              Date:<input type="text" value=""></input>
+              Date:<input type="text" defaultValue=""></input>
               <br />
-              Time:<input type="text" value=""></input>
+              Time:<input type="text" defaultValue=""></input>
               <br />
               <button>Submit</button>
+              <p>{msg}</p>
             </form>
           </ReactModal>
         </div>
       </div>
     </div>
   );
-}
+  }
 export default MainOutlet;

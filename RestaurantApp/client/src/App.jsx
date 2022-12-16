@@ -6,6 +6,7 @@ import Menu from "./components/Menu/Menu";
 import MainOutlet from "./components/Outlets/MainOutlet";
 import Outlet2 from "./components/Outlets/Outlet2";
 import Outlet3 from "./components/Outlets/Outlet3";
+import BookingEdit from "./components/Booking/BookingEdit";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/booking" element={<Booking />} />
+        <Route path="/booking/:id" element={<BookingEdit />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/mainoutlet" element={<MainOutlet />} />
         <Route path="/outlet2" element={<Outlet2 />} />
