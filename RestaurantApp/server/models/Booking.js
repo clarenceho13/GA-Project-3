@@ -7,8 +7,8 @@ const bookingSchema = new mongoose.Schema(
     hp: { type: Number, minValue: 8, required: true },
     email: { type: String, required: true, unique: true },
     pax: { type: Number, minValue: 1, required: true },
-    date: String,
-    time: String,
+    date: { type: String },
+    time: { type:String },
     booked: { type: Boolean, default: false },
   },
   { timestamps: true }
