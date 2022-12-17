@@ -40,6 +40,10 @@ function CreateBooking() {
           setMsg("something went wrong");
         }
       };
+
+      for(let i=0;i<5;i++){
+        handleCreate();
+      }
     
 
   return (
