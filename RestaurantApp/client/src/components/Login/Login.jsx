@@ -1,15 +1,16 @@
 import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
  const Login=()=> {
     const navigate=useNavigate();
    const SignIn=()=>{
-    navigate("/home")
-
-    //if username and passward match and is in data base
-    //go into next page
-    //else return 401 user not found 
+    navigate("/home") 
    }
+   const AdminSignIn=()=>{
+    navigate("/admin")
+   }
+  
   return (
     <div>
      <h1>Home Page</h1>
@@ -21,7 +22,7 @@ import { Link, useNavigate } from "react-router-dom";
 
       <button onClick={SignIn}>Sign In</button>
 
-      
+      <button onClick={AdminSignIn}>Admin</button>
 
       
     </div>
