@@ -10,7 +10,15 @@ function Booking() {
       <div className="body container">
         <div className="navbar container">
           <Navbar />
+          <div className="outletdetails container">
+            <div className="details container">
+              <h2>Logged in as:</h2>
+              <p> username </p>
+              <button>Log Out</button>
+            </div>
+          </div>
         </div>
+
         <div className="calenderheader container">
           <h2>Bookings</h2>
         </div>

@@ -1,17 +1,12 @@
 const Register = require("../../models/Register");
+const bcrypt = require("bcrypt");
+
 const seedUser = async (req, res) => {
   const seedUser = [
     {
-      name: "Clarence",
-      username: "Clarence",
-      password: "Clarence123",
-      hp: 12345678,
-      email: "clarence@email.com",
-    },
-    {
       name: "George",
       username: "George",
-      password: "George123",
+      password: bcrypt.hashSync("George123", 10),
       hp: 53464324,
       email: "george@email.com",
     },

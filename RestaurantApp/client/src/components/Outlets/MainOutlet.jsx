@@ -1,6 +1,5 @@
 import Navbar from "../Navbar/Navbar";
 import Calendar from "react-calendar";
-<<<<<<< HEAD
 import { useState } from "react";
 import Time from "./Time";
 
@@ -12,13 +11,6 @@ function MainOutlet() {
     current.getMonth() + 1
   }/${current.getFullYear()}`;
 
-=======
-import CreateBooking from "./CreateBooking";
-
-
-function MainOutlet() {
-  
->>>>>>> 02305cb2e3aca1f1211dd0db5f237915fb1d2dd6
   return (
     <div>
       <div className="header container">
@@ -73,7 +65,6 @@ function MainOutlet() {
               maxDate={new Date("12-31-2022")}
             />
           </div>
-<<<<<<< HEAD
           <div className="App">
             <h1>Today is {currentDate}</h1>
           </div>
@@ -81,34 +72,9 @@ function MainOutlet() {
             Selected date: {date.toDateString()}
           </div>
           <Time selectedDate={date.toDateString()} />
-=======
-         
-          <CreateBooking />
-            
-          
->>>>>>> 02305cb2e3aca1f1211dd0db5f237915fb1d2dd6
         </div>
       </div>
     </div>
   );
-  }
+}
 export default MainOutlet;
-
-/*
-<form onSubmit={createBooking}>
-              Name:<input type="text" defaultValue=""></input>
-              <br />
-              HP:<input type="number" defaultValue=""></input>
-              <br />
-              Email:<input type="email" defaultValue=""></input>
-              <br />
-              Pax:<input type="number" defaultValue=""></input>
-              <br />
-              Date:<input type="text" defaultValue=""></input>
-              <br />
-              Time:<input type="text" defaultValue=""></input>
-              <br />
-              <button>Submit</button>
-              <p>{msg}</p>
-            </form>
-            */

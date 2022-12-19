@@ -36,6 +36,7 @@ function Time({ selectedDate }) {
       },
       body: JSON.stringify(info),
     });
+
     navigate("/booking");
   };
 

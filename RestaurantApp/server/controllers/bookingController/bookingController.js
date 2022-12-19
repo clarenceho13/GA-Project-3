@@ -1,20 +1,13 @@
 const express = require("express");
 const Booking = require("../../models/Booking");
-<<<<<<< HEAD
 const seed = require("../bookingSeed/bookingSeed");
-const seedUser = require("../userSeed/userSeed");
-const Register = require("../../models/Register");
-=======
-const seed = require("../bookingSeed/bookingSeed"); //export seed to controller
->>>>>>> 02305cb2e3aca1f1211dd0db5f237915fb1d2dd6
 
 const router = express.Router();
 
 //! Seed data
 router.get("/seed", seed);
-router.get("/seedUser", seedUser);
 
-//! Get data
+//! Get data (reservations)
 router.get("/", async (req, res) => {
   try {
     const booking = await Booking.find().exec();
@@ -24,7 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//! Get specific data
+//! Get specific data (reservations)
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -49,7 +42,6 @@ router.delete("/:id", async (req, res) => {
 //! Create data
 router.post("/", async (req, res) => {
   try {
-    console.log("body",req.body)
     const booking = await Booking.create(req.body);
     res.status(201).json(booking);
   } catch (error) {
@@ -70,8 +62,4 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 02305cb2e3aca1f1211dd0db5f237915fb1d2dd6
 module.exports = router;

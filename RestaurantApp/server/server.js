@@ -4,8 +4,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path");
-// const session = require("express-session");
 const bookingController = require("./controllers/bookingController/bookingController");
+const userController = require("../server/controllers/userController/userController");
+const adminController = require("../server/controllers/adminController/adminController");
 
 //! CONFIGURATION AND CONNECTION
 const app = express();
@@ -22,8 +23,9 @@ mongoose.connect(MONGO_URI);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static("../client/dist"));
-//This is the url set to test in insomnia
 app.use("/api/booking", bookingController);
+app.use("/api/user", userController);
+app.use("/api/admin", adminController);
 
 //! TESTING
 app.get("/api/", (req, res) => {
