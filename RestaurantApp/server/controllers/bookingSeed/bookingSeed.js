@@ -6,8 +6,8 @@ const seed = async (req, res) => {
       hp: 12345678,
       email: "clarence@email.com",
       pax: 3,
-      date: "15 Dec 2022",
-      time: "12pm",
+      date: "Thu Dec 22 2022",
+      time: "12:00 PM",
       booked: true,
     },
     {
@@ -15,23 +15,14 @@ const seed = async (req, res) => {
       hp: 53464324,
       email: "george@email.com",
       pax: 2,
-      date: "18 Dec 2022",
-      time: "10pm",
-      booked: true,
-    },
-    {
-      name: "Ambrose",
-      hp: 34533413,
-      email: "ambrose@email.com",
-      pax: 3,
-      date: "21 Dec 2022",
-      time: "4pm",
+      date: "Sun Dec 25 2022",
+      time: "10:00 AM",
       booked: true,
     },
   ];
-  // await Booking.deleteMany({});
-  const bookings = await Booking.insertMany(seedBooking);
-  res.json(bookings);
+  await Booking.deleteMany({});
+  const booking = await Booking.insertMany(seedBooking);
+  res.json(booking);
 };
 
 module.exports = seed;

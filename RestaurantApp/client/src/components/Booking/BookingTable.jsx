@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function BookingTable() {
   const [booking, setBooking] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/api/booking/")
@@ -21,6 +22,10 @@ function BookingTable() {
       .then(() => {
         setBooking(booking.filter((h) => h._id !== id));
       });
+  };
+
+  const navigateToEditPage = (id) => {
+    navigate(`/booking/${id}`);
   };
 
   return (
@@ -45,7 +50,9 @@ function BookingTable() {
             <td>{booking.date}</td>
             <td>{booking.time}</td>
             <td>
-              <button>Edit</button>
+              <button onClick={() => navigateToEditPage(booking._id)}>
+                Edit
+              </button>
               <button onClick={() => handleDelete(booking._id)}>X</button>
             </td>
           </tr>
