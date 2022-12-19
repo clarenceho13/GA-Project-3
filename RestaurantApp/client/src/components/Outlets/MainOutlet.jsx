@@ -11,6 +11,10 @@ function MainOutlet() {
     current.getMonth() + 1
   }/${current.getFullYear()}`;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
   return (
     <div>
       <div className="header container">
@@ -65,6 +69,10 @@ function MainOutlet() {
               maxDate={new Date("12-31-2022")}
             />
           </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
           <div className="App">
             <h1>Today is {currentDate}</h1>
           </div>
@@ -72,9 +80,20 @@ function MainOutlet() {
             Selected date: {date.toDateString()}
           </div>
           <Time selectedDate={date.toDateString()} />
+<<<<<<< HEAD
         </div>
       </div>
     </div>
+=======
+     </div>
+     </div>
+     </div>
+        
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
   );
 }
 export default MainOutlet;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee

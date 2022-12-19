@@ -41,6 +41,10 @@ function BookingEdit() {
     /* Redirecting the user to the booking page. */
     navigate("/booking");
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
 
   return (
     <div>
@@ -50,6 +54,10 @@ function BookingEdit() {
       <div className="body container">
         <div className="navbar container">
           <Navbar />
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
         </div>
         <div className="calenderheader container">
           <h2>Bookings</h2>
@@ -95,3 +103,10 @@ function BookingEdit() {
 }
 
 export default BookingEdit;
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee

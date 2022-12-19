@@ -1,6 +1,12 @@
 const express = require("express");
 const Booking = require("../../models/Booking");
 const seed = require("../bookingSeed/bookingSeed");
+<<<<<<< HEAD
+=======
+const seedUser = require("../userSeed/userSeed");
+const Register = require("../../models/Register");
+
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
 
 const router = express.Router();
 
@@ -62,4 +68,8 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
 module.exports = router;
