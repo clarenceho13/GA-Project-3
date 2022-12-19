@@ -21,19 +21,12 @@ const seed = async (req, res) => {
     }
     
   ];
-<<<<<<< HEAD
+
   await Booking.deleteMany({});
   const booking = await Booking.insertMany(seedBooking);
   res.json(booking);
-=======
-   await Booking.deleteMany({});
-  const bookings = await Booking.insertMany(seedBooking);
-  res.json(bookings);
->>>>>>> 02305cb2e3aca1f1211dd0db5f237915fb1d2dd6
+
 };
 
 module.exports = seed;
 
-/*
-
-*/
