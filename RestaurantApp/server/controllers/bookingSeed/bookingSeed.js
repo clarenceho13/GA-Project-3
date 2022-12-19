@@ -18,11 +18,22 @@ const seed = async (req, res) => {
       date: "Sun Dec 25 2022",
       time: "10:00 AM",
       booked: true,
-    },
+    }
+    
   ];
+<<<<<<< HEAD
   await Booking.deleteMany({});
   const booking = await Booking.insertMany(seedBooking);
   res.json(booking);
+=======
+   await Booking.deleteMany({});
+  const bookings = await Booking.insertMany(seedBooking);
+  res.json(bookings);
+>>>>>>> 02305cb2e3aca1f1211dd0db5f237915fb1d2dd6
 };
 
 module.exports = seed;
+
+/*
+
+*/

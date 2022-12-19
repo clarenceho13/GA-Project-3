@@ -22,6 +22,7 @@ mongoose.connect(MONGO_URI);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static("../client/dist"));
+//This is the url set to test in insomnia
 app.use("/api/booking", bookingController);
 
 //! TESTING

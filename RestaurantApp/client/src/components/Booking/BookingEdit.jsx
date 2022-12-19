@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Navbar from "../Navbar/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -41,6 +42,43 @@ function BookingEdit() {
     /* Redirecting the user to the booking page. */
     navigate("/booking");
   };
+=======
+import React, { useState, useEffect } from 'react'
+import Navbar from '../Navbar/Navbar';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+function BookingEdit() {
+    const [booking, setBooking]=useState({});
+    const { id } = useParams();
+    const navigate = useNavigate();
+
+//Edit Page not yet completed. (George)
+    const updateBooking =  async (event) =>{
+        event.preventDefault()
+        const formData = new FormData(event.target);
+    const info = Object.fromEntries(formData);
+
+    const response = await fetch(`/api/booking/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(info),
+      });
+      await response.json();
+      navigate("/booking");
+    }
+
+    useEffect(() => {
+        const fetchBooking = async () => {
+          const response = await fetch(`/api/booking/${id}`);
+          const data = await response.json();
+          setBooking(data);
+        };
+        fetchBooking();
+      }, [id]);
+>>>>>>> 02305cb2e3aca1f1211dd0db5f237915fb1d2dd6
 
   return (
     <div>
@@ -50,6 +88,7 @@ function BookingEdit() {
       <div className="body container">
         <div className="navbar container">
           <Navbar />
+<<<<<<< HEAD
         </div>
         <div className="calenderheader container">
           <h2>Bookings</h2>
@@ -95,3 +134,35 @@ function BookingEdit() {
 }
 
 export default BookingEdit;
+=======
+          <div className="outletdetails container">
+          </div>
+        </div>
+        <div className="calenderheader container">
+          <h2>Edit Booking</h2>
+        </div>
+        <div className="calenderbody container">
+            <form onSubmit={updateBooking}>
+            Name: <input defaultValue={booking.name}></input>
+            <br/>
+            Hp:<input></input>
+            <br/>
+            Email:<input></input>
+            <br/>
+            Pax:<input></input>
+            <br/>
+            Date:<input></input>
+            <br/>
+            Time:<input></input>
+            <br/>
+            <button>Update Booking</button>
+            </form>
+            </div>
+      </div>
+    </div>
+  );
+
+}
+
+export default BookingEdit
+>>>>>>> 02305cb2e3aca1f1211dd0db5f237915fb1d2dd6
