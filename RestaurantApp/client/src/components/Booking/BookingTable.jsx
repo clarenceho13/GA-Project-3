@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-=======
-
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
 
 function BookingTable() {
   const [booking, setBooking] = useState([]);
@@ -28,17 +24,9 @@ function BookingTable() {
       });
   };
 
-<<<<<<< HEAD
   const navigateToEditPage = (id) => {
-    navigate(`/booking/${id}`);
+    navigate(`/booking`);
   };
-=======
-
-  const navigateToEditPage = (id) => {
-    navigate(`/booking/${id}`);
-  };
-
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
 
   return (
     <table border="1">
@@ -50,6 +38,7 @@ function BookingTable() {
           <th>Pax</th>
           <th>Date</th>
           <th>Time</th>
+          <th>Outlet</th>
         </tr>
       </thead>
       <tbody>
@@ -61,18 +50,11 @@ function BookingTable() {
             <td>{booking.pax}</td>
             <td>{booking.date}</td>
             <td>{booking.time}</td>
+            <td>{booking.outlet}</td>
             <td>
-<<<<<<< HEAD
               <button onClick={() => navigateToEditPage(booking._id)}>
                 Edit
               </button>
-=======
-
-              <button onClick={() => navigateToEditPage(booking._id)}>
-                Edit
-              </button>
-
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
               <button onClick={() => handleDelete(booking._id)}>X</button>
             </td>
           </tr>

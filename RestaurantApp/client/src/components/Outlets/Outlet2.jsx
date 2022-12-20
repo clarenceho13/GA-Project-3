@@ -1,6 +1,14 @@
 import Navbar from "../Navbar/Navbar";
+import Calendar from "react-calendar";
+import { useState } from "react";
+import Time2 from "./Time2";
 
 function Outlet2() {
+  const [date, setDate] = useState(new Date());
+  const current = new Date();
+  const currentDate = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
   return (
     <div>
       <div className="header container">
@@ -42,7 +50,31 @@ function Outlet2() {
         <div className="calenderheader container">
           <h2>Outlet2</h2>
         </div>
-        <div className="calenderbody container"></div>
+        <div className="calenderbody container">
+          <div className="app">
+            <div className="calendar-container">
+              <Calendar
+                onChange={setDate}
+                value={date}
+                minDate={
+                  new Date(
+                    `${
+                      current.getMonth() + 1
+                    }-${current.getDate()}-${current.getFullYear()}`
+                  )
+                }
+                maxDate={new Date("12-31-2022")}
+              />
+            </div>
+            <div className="App">
+              <h1>Today is {currentDate}</h1>
+            </div>
+            <div className="text-center">
+              Selected date: {date.toDateString()}
+            </div>
+            <Time2 selectedDate={date.toDateString()} />
+          </div>
+        </div>
       </div>
     </div>
   );

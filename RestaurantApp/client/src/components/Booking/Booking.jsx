@@ -1,7 +1,11 @@
 import Navbar from "../Navbar/Navbar";
 import BookingTable from "./BookingTable";
+import { useContext } from "react";
+import { UserContext } from "../../App";
 
 function Booking() {
+  const user = useContext(UserContext);
+
   return (
     <div>
       <div className="header container">
@@ -13,7 +17,10 @@ function Booking() {
           <div className="outletdetails container">
             <div className="details container">
               <h2>Logged in as:</h2>
-              <p> username </p>
+              <p> Username:{user.username} </p>
+              <p> Name: {user.name} </p>
+              <p> HP: {user.hp} </p>
+              <p> Email: {user.email} </p>
               <button>Log Out</button>
             </div>
           </div>

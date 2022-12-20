@@ -1,8 +1,7 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import ReactModal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
 
 const reservationTiming = [
   "10:00 AM",
@@ -12,10 +11,9 @@ const reservationTiming = [
   " 06:00 PM",
 ];
 
-function Time({ selectedDate }) {
+function Time2({ selectedDate }) {
   const [time, setTime] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const user = useContext(UserContext);
 
   function displayInfo(e) {
     setModalIsOpen(true);
@@ -38,7 +36,7 @@ function Time({ selectedDate }) {
       body: JSON.stringify(info),
     });
 
-    navigate(`/booking/${user._id}`);
+    navigate("/booking");
   };
 
   return (
@@ -81,7 +79,7 @@ function Time({ selectedDate }) {
             <input
               type="text"
               name="outlet"
-              defaultValue="Main Outlet"
+              defaultValue="Outlet2"
               readOnly
             ></input>
             <br />
@@ -93,4 +91,4 @@ function Time({ selectedDate }) {
   );
 }
 
-export default Time;
+export default Time2;

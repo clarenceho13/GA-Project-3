@@ -6,15 +6,12 @@ import Time from "./Time";
 function MainOutlet() {
   const [date, setDate] = useState(new Date());
 
+
   const current = new Date();
   const currentDate = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
   return (
     <div>
       <div className="header container">
@@ -53,47 +50,36 @@ function MainOutlet() {
             </div>
           </div>
         </div>
-        <div className="app">
-          <h1 className="header">React Calendar</h1>
-          <div className="calendar-container">
-            <Calendar
-              onChange={setDate}
-              value={date}
-              minDate={
-                new Date(
-                  `${
-                    current.getMonth() + 1
-                  }-${current.getDate()}-${current.getFullYear()}`
-                )
-              }
-              maxDate={new Date("12-31-2022")}
-            />
+        <div className="calenderheader container">
+          <h2>Main Outlet</h2>
+        </div>
+        <div className="calenderbody container">
+          <div className="app">
+            <div className="calendar-container">
+              <Calendar
+                onChange={setDate}
+                value={date}
+                minDate={
+                  new Date(
+                    `${
+                      current.getMonth() + 1
+                    }-${current.getDate()}-${current.getFullYear()}`
+                  )
+                }
+                maxDate={new Date("12-31-2022")}
+              />
+            </div>
+            <div className="App">
+              <h1>Today is {currentDate}</h1>
+            </div>
+            <div className="text-center">
+              Selected date: {date.toDateString()}
+            </div>
+            <Time selectedDate={date.toDateString()} />
           </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
-          <div className="App">
-            <h1>Today is {currentDate}</h1>
-          </div>
-          <div className="text-center">
-            Selected date: {date.toDateString()}
-          </div>
-          <Time selectedDate={date.toDateString()} />
-<<<<<<< HEAD
         </div>
       </div>
     </div>
-=======
-     </div>
-     </div>
-     </div>
-        
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
   );
 }
 export default MainOutlet;
-<<<<<<< HEAD
-=======
-
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee

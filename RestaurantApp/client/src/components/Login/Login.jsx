@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ReactModal from "react-modal";
 
-const Login = () => {
+const Login = ({ callback }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -26,6 +25,7 @@ const Login = () => {
       },
       body: JSON.stringify(info),
     });
+
     if (response.ok) {
       navigate("/adminbooking");
     } else {
@@ -47,8 +47,12 @@ const Login = () => {
       },
       body: JSON.stringify(info),
     });
+
     if (response.ok) {
-      navigate("/booking");
+      const data = await response.json();
+      console.log(data);
+      navigate(`/booking/${data._id}`);
+      callback(data);
     } else {
       setErrorMsg("Invalid Username/Password");
     }
@@ -79,7 +83,7 @@ const Login = () => {
         </fieldset>
         <button>Sign In</button>
       </form>
-      <button> Sign Up</button>
+      <button onClick={() => navigate("/Register")}> Sign Up</button>
       <br />
       <button onClick={ModalOpen}> Admin </button>
       <ReactModal
@@ -109,35 +113,6 @@ const Login = () => {
         </form>
         <p>{errorMsg}</p>
       </ReactModal>
-=======
-import React from 'react';
-import { useNavigate } from "react-router-dom";
-
-
- const Login=()=> {
-    const navigate=useNavigate();
-   const SignIn=()=>{
-    navigate("/home") 
-   }
-   const AdminSignIn=()=>{
-    navigate("/admin")
-   }
-  
-  return (
-    <div>
-     <h1>Home Page</h1>
-      <input type="text" placeholder="username" />
-      <div>
-      <input type="password" placeholder="password" />
-      </div>
-      
-
-      <button onClick={SignIn}>Sign In</button>
-
-      <button onClick={AdminSignIn}>Admin</button>
-
-      
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
     </div>
   );
 };

@@ -20,21 +20,9 @@ const seed = async (req, res) => {
       booked: true,
     },
   ];
-<<<<<<< HEAD
   await Booking.deleteMany({});
   const booking = await Booking.insertMany(seedBooking);
   res.json(booking);
 };
 
 module.exports = seed;
-=======
-
-  await Booking.deleteMany({});
-  const booking = await Booking.insertMany(seedBooking);
-  res.json(booking);
-
-};
-
-module.exports = seed;
-
->>>>>>> d5882b5611748f5d544478cbb42c3b8d65c987ee
