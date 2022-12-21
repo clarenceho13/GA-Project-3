@@ -7,6 +7,7 @@ const path = require("path");
 const bookingController = require("./controllers/bookingController/bookingController");
 const userController = require("../server/controllers/userController/userController");
 const adminController = require("../server/controllers/adminController/adminController");
+const outletController = require("../server/controllers/outletController/outletController");
 
 //! CONFIGURATION AND CONNECTION
 const app = express();
@@ -26,6 +27,7 @@ app.use(express.static("../client/dist"));
 app.use("/api/booking", bookingController);
 app.use("/api/user", userController);
 app.use("/api/admin", adminController);
+app.use("/api/outlet", outletController);
 
 //! TESTING
 app.get("/api/", (req, res) => {

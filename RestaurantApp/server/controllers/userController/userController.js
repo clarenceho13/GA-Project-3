@@ -7,27 +7,6 @@ const seedUser = require("../userSeed/userSeed");
 //! Seed User
 router.get("/seed", seedUser);
 
-//! Get User data
-router.get("/", async (req, res) => {
-  try {
-    const register = await Register.find().exec();
-    res.status(200).json(register);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-//! Get specific data (user)
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const register = await Register.findById(id).exec();
-    res.status(200).json(register);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
 //! Login User
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -41,6 +20,27 @@ router.post("/login", async (req, res) => {
     return res.status(401).json({ msg: "Invalid password" });
   } else {
     return res.json(user);
+  }
+});
+
+//! Get user data
+router.get("/", async (req, res) => {
+  try {
+    const register = await Register.find().exec();
+    res.status(200).json(register);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//! Get specific user data
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const register = await Register.findById(id).exec();
+    res.status(200).json(register);
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 

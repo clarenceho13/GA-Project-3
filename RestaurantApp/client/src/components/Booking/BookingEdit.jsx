@@ -1,11 +1,13 @@
 import Navbar from "../Navbar/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../App";
 
 function BookingEdit() {
   const [selectedBooking, setSelectedBooking] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
+  const user = useContext(UserContext);
 
   /* Fetching the data from the database. */
   useEffect(() => {
@@ -14,6 +16,7 @@ function BookingEdit() {
       const data = await response.json();
       /* Setting the state of selectedBooking to the data that is fetched from the database. */
       setSelectedBooking(data);
+      console.log(selectedBooking);
     };
     fetchBooking();
   }, []);
@@ -39,7 +42,7 @@ function BookingEdit() {
     /* Waiting for the response to be converted to JSON. */
     await response.json();
     /* Redirecting the user to the booking page. */
-    navigate("/booking");
+    navigate(`/booking/${user._id}`);
   };
 
   return (

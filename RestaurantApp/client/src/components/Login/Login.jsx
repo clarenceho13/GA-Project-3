@@ -50,8 +50,7 @@ const Login = ({ callback }) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
-      navigate(`/booking/${data._id}`);
+      navigate(`/booking/${data.username}`);
       callback(data);
     } else {
       setErrorMsg("Invalid Username/Password");

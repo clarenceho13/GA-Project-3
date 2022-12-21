@@ -2,9 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../App";
 
-function BookingTable() {
+function AdminBookingTable() {
   const [booking, setBooking] = useState([]);
-  // const [getData, setGetData] = useState([]);
   const navigate = useNavigate();
   const user = useContext(UserContext);
 
@@ -13,16 +12,6 @@ function BookingTable() {
       .then((response) => response.json())
       .then((data) => setBooking(data));
   }, []);
-
-  // useEffect(() => {
-  //   const fetchBooking = async () => {
-  //     const response = await fetch(`/api/booking/`);
-  //     const data = await response.json();
-  //     /* Setting the state of selectedBooking to the data that is fetched from the database. */
-  //     setBooking(data);
-  //   };
-  //   fetchBooking();
-  // }, []);
 
   const handleDelete = (id) => {
     fetch(`/api/booking/${id}`, {
@@ -36,10 +25,6 @@ function BookingTable() {
         /* Filtering the booking array and setting the new array to the state. */
         setBooking(booking.filter((booking) => booking._id !== id));
       });
-  };
-
-  const navigateToEditPage = (id) => {
-    navigate(`/booking/${user.username}/${id}`);
   };
 
   return (
@@ -66,9 +51,6 @@ function BookingTable() {
             <td>{booking.time}</td>
             <td>{booking.outlet}</td>
             <td>
-              <button onClick={() => navigateToEditPage(booking._id)}>
-                Edit
-              </button>
               <button onClick={() => handleDelete(booking._id)}>X</button>
             </td>
           </tr>
@@ -78,4 +60,4 @@ function BookingTable() {
   );
 }
 
-export default BookingTable;
+export default AdminBookingTable;

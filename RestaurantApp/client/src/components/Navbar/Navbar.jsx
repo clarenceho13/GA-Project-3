@@ -7,13 +7,13 @@ function Navbar() {
   return (
     <>
       <nav id="navBar">
-        <NavLink to={`/booking/${user._id}`} as={NavLink}>
+        <NavLink to={`/booking/${user.username}`} as={NavLink}>
           <div className="navbuttons container">My Bookings</div>
         </NavLink>
-        <NavLink to={`/mainoutlet/${user._id}`} as={NavLink}>
+        <NavLink to={`/mainoutlet/${user.username}`} as={NavLink}>
           <div className="navbuttons container">Main Outlet</div>
         </NavLink>
-        <NavLink to={`/outlet2/${user._id}`} as={NavLink}>
+        <NavLink to={`/outlet2/${user.username}`} as={NavLink}>
           <div className="navbuttons container">Outlet2</div>
         </NavLink>
       </nav>

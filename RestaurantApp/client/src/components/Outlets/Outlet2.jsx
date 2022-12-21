@@ -1,11 +1,19 @@
 import Navbar from "../Navbar/Navbar";
 import Calendar from "react-calendar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Time2 from "./Time2";
 
 function Outlet2() {
   const [date, setDate] = useState(new Date());
+  const [outlet, setOutlet] = useState([]);
   const current = new Date();
+
+  useEffect(() => {
+    fetch(`/api/outlet/63a174f46afd9c31a4ebfaf0`)
+      .then((response) => response.json())
+      .then((data) => setOutlet(data));
+  }, []);
+
   const currentDate = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
@@ -20,29 +28,18 @@ function Outlet2() {
           <div className="outletdetails container">
             <div className="details container">
               <h2>Location:</h2>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Eligendi dicta odio vel numquam impedit aspernatur hic nostrum,
-                aliquam officia illo minima? Recusandae vero nobis ullam illo
-                facilis illum rerum placeat.
-              </p>
+              <p>{outlet.location}</p>
             </div>
             <div className="details container">
               <h2>Opening Hours:</h2>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim
-                temporibus itaque voluptatum cumque illo, rerum eum qui
-                inventore sed quibusdam optio maxime assumenda quia ipsam! Id
-                explicabo obcaecati vitae dolore.
-              </p>
+              <p>{outlet.openinghours}</p>
             </div>
             <div className=" details container">
               <h2>Contact Details</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Perspiciatis, quis. Veniam dolorum cumque nemo, itaque fugit
-                molestiae provident in ex sed nihil libero similique enim velit
-                nobis deleniti dolore! Nulla!
+                {outlet.hp}
+                <br />
+                {outlet.email}
               </p>
             </div>
           </div>

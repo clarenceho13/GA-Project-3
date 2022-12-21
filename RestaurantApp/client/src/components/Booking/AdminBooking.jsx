@@ -1,4 +1,4 @@
-import BookingTable from "./BookingTable";
+import AdminBookingTable from "./AdminBookingTable";
 
 function AdminBooking() {
   return (
@@ -11,7 +11,10 @@ function AdminBooking() {
           <h2>Bookings</h2>
         </div>
         <div className="calenderbody container">
-          <BookingTable />
+          <button>ALL</button>
+          <button>MAIN OULET</button>
+          <button>OUTLET2</button>
+          <AdminBookingTable />
         </div>
       </div>
     </div>

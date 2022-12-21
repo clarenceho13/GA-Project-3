@@ -1,28 +1,27 @@
 const express = require("express");
 const Booking = require("../../models/Booking");
-const Register = require("../../models/Register");
 const seed = require("../bookingSeed/bookingSeed");
 
 const router = express.Router();
 
-//! Seed data
+//! Seed booking data
 router.get("/seed", seed);
 
-// //! Get specific data (user)
-// router.get("/:id", async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const register = await Register.findById(id).exec();
-//     res.status(200).json(register);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
-
-//! Get data (reservations)
+//! Get all reservations data
 router.get("/", async (req, res) => {
   try {
     const booking = await Booking.find().exec();
+    res.status(200).json(booking);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//! Get specific booking data
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const booking = await Booking.findById(id).exec();
     res.status(200).json(booking);
   } catch (error) {
     res.status(500).json(error);
@@ -41,7 +40,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 //! Create data
-router.post("/:id", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const booking = await Booking.create(req.body);
     res.status(201).json(booking);

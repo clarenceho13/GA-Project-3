@@ -9,7 +9,6 @@ const Register = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const info = Object.fromEntries(formData);
-    console.log(info);
 
     const response = await fetch("/api/user", {
       method: "POST",

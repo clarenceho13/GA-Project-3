@@ -19,15 +19,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Login callback={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/booking/:user" element={<Booking userid={user} />} />
+          <Route path="/booking/:user" element={<Booking user={user} />} />
           <Route path="/adminbooking" element={<AdminBooking />} />
           <Route
             path="/booking/:user/:id"
-            element={<BookingEdit userid={user} />}
+            element={<BookingEdit user={user} />}
           />
           <Route
             path="/mainoutlet/:user"
-            element={<MainOutlet userid={user} />}
+            element={<MainOutlet user={user} />}
           />
           <Route path="/outlet2/:user" element={<Outlet2 userid={user} />} />
         </Routes>
