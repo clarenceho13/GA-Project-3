@@ -12,7 +12,7 @@ function AdminBookingTable() {
       .then((response) => response.json())
       .then((data) => setBooking(data));
   }, []);
-
+ console.log(booking)
   const handleDelete = (id) => {
     fetch(`/api/booking/${id}`, {
       method: "DELETE",
@@ -40,6 +40,7 @@ function AdminBookingTable() {
           <th>Outlet</th>
         </tr>
       </thead>
+  
       <tbody>
         {booking.map((booking) => (
           <tr key={booking._id}>

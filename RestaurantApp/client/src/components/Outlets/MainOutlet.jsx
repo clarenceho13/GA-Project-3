@@ -8,7 +8,7 @@ function MainOutlet() {
   const [outlet, setOutlet] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/outlet/63a174f46afd9c31a4ebfaef`)
+    fetch(`/api/outlet/63a2a2799c4e1377c40e9fe1`)
       .then((response) => response.json())
       .then((data) => setOutlet(data));
   }, []);

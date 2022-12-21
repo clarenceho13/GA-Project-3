@@ -16,6 +16,7 @@ function Navbar() {
         <NavLink to={`/outlet2/${user.username}`} as={NavLink}>
           <div className="navbuttons container">Outlet2</div>
         </NavLink>
+       
       </nav>
     </>
   );

@@ -9,7 +9,7 @@ function Outlet2() {
   const current = new Date();
 
   useEffect(() => {
-    fetch(`/api/outlet/63a174f46afd9c31a4ebfaf0`)
+    fetch(`/api/outlet/63a2a2799c4e1377c40e9fe2`)
       .then((response) => response.json())
       .then((data) => setOutlet(data));
   }, []);

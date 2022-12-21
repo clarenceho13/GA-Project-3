@@ -16,9 +16,9 @@ const reservationTiming = [
 function Time({ selectedDate }) {
   const [time, setTime] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selected, setSelected] = useState("63a174f46afd9c31a4ebfaef");
+  const [selected, setSelected] = useState("63a2a2799c4e1377c40e9fe1");
   const user = useContext(UserContext);
-
+ //console.log(user)
   function displayInfo(event) {
     setModalIsOpen(true);
     setTime(event.target.innerText);
@@ -29,6 +29,7 @@ function Time({ selectedDate }) {
   const handleChange = (event) => {
     setSelected(event.target.value);
   };
+  console.log(selected)
 
   const createBooking = async (event) => {
     event.preventDefault();
@@ -40,7 +41,7 @@ function Time({ selectedDate }) {
 
     // console.log(info);
     // console.log("infouserid", info.userid);
-    // console.log(user._id);
+     console.log(user._id);
 
     const response = await fetch(`/api/booking/${user._id}`, {
       method: "POST",
@@ -92,8 +93,8 @@ function Time({ selectedDate }) {
             <br />
             Outlet:
             <select value={selected} onChange={handleChange}>
-              <option value="63a174f46afd9c31a4ebfaef">Main Outlet</option>
-              <option value="63a174f46afd9c31a4ebfaf0">Outlet2</option>
+              <option value="63a2a2799c4e1377c40e9fe2">Main Outlet</option>
+              <option value="63a2a2799c4e1377c40e9fe1">Outlet2</option>
             </select>
             <br />
             <button>Submit</button>
