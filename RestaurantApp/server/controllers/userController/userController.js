@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const Register = require("../../models/Register");
+const User = require("../../models/User");
 const seedUser = require("../userSeed/userSeed");
 
 //! Seed User
@@ -10,7 +10,7 @@ router.get("/seed", seedUser);
 //! Login User
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  const user = await Register.findOne({ username }).exec();
+  const user = await User.findOne({ username }).exec();
   console.log(user);
 
   if (user === null) {
@@ -26,8 +26,8 @@ router.post("/login", async (req, res) => {
 //! Get user data
 router.get("/", async (req, res) => {
   try {
-    const register = await Register.find().exec();
-    res.status(200).json(register);
+    const user = await User.find().exec();
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -37,8 +37,8 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const register = await Register.findById(id).exec();
-    res.status(200).json(register);
+    const user = await User.findById(id).exec();
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -48,8 +48,8 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   req.body.password = bcrypt.hashSync(req.body.password, 10);
   try {
-    const user = await Register.create(req.body);
-    res.status(201).json(user);
+    const newuser = await User.create(req.body);
+    res.status(201).json(newuser);
   } catch (error) {
     res.status(500).json({ error });
   }

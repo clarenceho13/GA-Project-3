@@ -56,12 +56,18 @@ function MainOutlet() {
                 value={date}
                 minDate={
                   new Date(
-                    `${
-                      current.getMonth() + 1
-                    }-${current.getDate()}-${current.getFullYear()}`
+                    `${current.getMonth() + 1}-${
+                      current.getDate() + 1
+                    }-${current.getFullYear()}`
                   )
                 }
-                maxDate={new Date("12-31-2022")}
+                maxDate={
+                  new Date(
+                    `${current.getMonth() + 1}-${
+                      current.getDate() + 10
+                    }-${current.getFullYear()}`
+                  )
+                }
               />
             </div>
             <div className="App">

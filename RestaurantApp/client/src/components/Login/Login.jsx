@@ -50,6 +50,7 @@ const Login = ({ callback }) => {
 
     if (response.ok) {
       const data = await response.json();
+      // console.log("userdata", data);
       navigate(`/booking/${data.username}`);
       callback(data);
     } else {

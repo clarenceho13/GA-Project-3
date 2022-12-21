@@ -31,7 +31,7 @@ function Time2({ selectedDate }) {
     info.booked = true;
     info.userid = `${user._id}`;
 
-    const response = await fetch(`/api/booking/`, {
+    const response = await fetch(`/api/booking/${user._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

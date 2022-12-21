@@ -9,14 +9,14 @@ function BookingEdit() {
   const navigate = useNavigate();
   const user = useContext(UserContext);
 
+  console.log(id);
   /* Fetching the data from the database. */
   useEffect(() => {
     const fetchBooking = async () => {
-      const response = await fetch(`/api/booking/${id}`);
+      const response = await fetch(`/api/booking/user/${id}`);
       const data = await response.json();
       /* Setting the state of selectedBooking to the data that is fetched from the database. */
       setSelectedBooking(data);
-      console.log(selectedBooking);
     };
     fetchBooking();
   }, []);
@@ -24,6 +24,9 @@ function BookingEdit() {
   /* Setting the editedBooking state to the value of the input fields. */
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    //if else
+
     /* Converting the form data into an object. */
     const formData = new FormData(event.target);
     const info = Object.fromEntries(formData);

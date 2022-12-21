@@ -49,7 +49,7 @@ function AdminBookingTable() {
             <td>{booking.pax}</td>
             <td>{booking.date}</td>
             <td>{booking.time}</td>
-            <td>{booking.outlet}</td>
+            <td>{booking.outlet.name}</td>
             <td>
               <button onClick={() => handleDelete(booking._id)}>X</button>
             </td>

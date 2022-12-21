@@ -16,6 +16,7 @@ const reservationTiming = [
 function Time({ selectedDate }) {
   const [time, setTime] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selected, setSelected] = useState("63a174f46afd9c31a4ebfaef");
   const user = useContext(UserContext);
 
   function displayInfo(event) {
@@ -25,17 +26,23 @@ function Time({ selectedDate }) {
 
   const navigate = useNavigate();
 
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
+
   const createBooking = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const info = Object.fromEntries(formData);
     info.booked = true;
     info.userid = `${user._id}`;
+    info.outlet = selected;
 
-    console.log(info);
+    // console.log(info);
     // console.log("infouserid", info.userid);
+    // console.log(user._id);
 
-    const response = await fetch(`/api/booking`, {
+    const response = await fetch(`/api/booking/${user._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +58,7 @@ function Time({ selectedDate }) {
         {reservationTiming.map((time, index) => {
           return (
             <div key={index}>
-              <button onClick={displayInfo}> {time}</button>
+              <button onClick={displayInfo}>{time}</button>
             </div>
           );
         })}
@@ -84,12 +91,10 @@ function Time({ selectedDate }) {
             <input type="text" name="time" defaultValue={time} readOnly></input>
             <br />
             Outlet:
-            <input
-              type="text"
-              name="outlet"
-              defaultValue="Main Outlet"
-              readOnly
-            ></input>
+            <select value={selected} onChange={handleChange}>
+              <option value="63a174f46afd9c31a4ebfaef">Main Outlet</option>
+              <option value="63a174f46afd9c31a4ebfaf0">Outlet2</option>
+            </select>
             <br />
             <button>Submit</button>
           </form>

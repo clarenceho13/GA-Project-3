@@ -4,25 +4,14 @@ import { UserContext } from "../../App";
 
 function BookingTable() {
   const [booking, setBooking] = useState([]);
-  // const [getData, setGetData] = useState([]);
   const navigate = useNavigate();
   const user = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`/api/booking/`)
+    fetch(`/api/booking/${user._id}`)
       .then((response) => response.json())
       .then((data) => setBooking(data));
   }, []);
-
-  // useEffect(() => {
-  //   const fetchBooking = async () => {
-  //     const response = await fetch(`/api/booking/`);
-  //     const data = await response.json();
-  //     /* Setting the state of selectedBooking to the data that is fetched from the database. */
-  //     setBooking(data);
-  //   };
-  //   fetchBooking();
-  // }, []);
 
   const handleDelete = (id) => {
     fetch(`/api/booking/${id}`, {
@@ -33,7 +22,6 @@ function BookingTable() {
     })
       .then((response) => response.json())
       .then(() => {
-        /* Filtering the booking array and setting the new array to the state. */
         setBooking(booking.filter((booking) => booking._id !== id));
       });
   };
@@ -64,7 +52,7 @@ function BookingTable() {
             <td>{booking.pax}</td>
             <td>{booking.date}</td>
             <td>{booking.time}</td>
-            <td>{booking.outlet}</td>
+            <td>{booking.outlet.name}</td>
             <td>
               <button onClick={() => navigateToEditPage(booking._id)}>
                 Edit

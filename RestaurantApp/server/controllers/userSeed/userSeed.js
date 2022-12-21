@@ -1,4 +1,4 @@
-const Register = require("../../models/Register");
+const User = require("../../models/User");
 const bcrypt = require("bcrypt");
 
 const seedUser = async (req, res) => {
@@ -12,8 +12,8 @@ const seedUser = async (req, res) => {
     },
   ];
   await Register.deleteMany({});
-  const user = await Register.insertMany(seedUser);
-  res.json(user);
+  const newuser = await User.insertMany(seedUser);
+  res.json(newuser);
 };
 
 module.exports = seedUser;
