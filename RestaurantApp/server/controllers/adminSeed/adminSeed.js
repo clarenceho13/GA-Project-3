@@ -4,11 +4,11 @@ const Admin = require("../../models/Admin");
 const seedAdmin = async (req, res) => {
   const seedAdmin = [
     {
-      name: "Clarence",
-      username: "Clarence",
-      password: bcrypt.hashSync("Clarence123", 10),
+      name: "Administrator",
+      username: "Admin",
+      password: bcrypt.hashSync("Admin123", 10),
       hp: 12345678,
-      email: "clarence@email.com",
+      email: "admin@email.com",
     },
   ];
   await Admin.deleteMany({});

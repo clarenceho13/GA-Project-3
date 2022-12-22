@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../App";
+import { useContext } from "react";
 
 function AdminNavbar() {
+  const user = useContext(UserContext);
   const navigate = useNavigate();
   const navigateToBookingPage = () => {
-    navigate("/adminbooking");
+    navigate(`/booking/${user.username}`);
   };
 
   const navigateToCreatePage = () => {
@@ -15,6 +18,12 @@ function AdminNavbar() {
   };
 
   const returnToLogin = () => {
+    fetch(`/api/session/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     navigate("/");
   };
 
@@ -22,16 +31,36 @@ function AdminNavbar() {
     <>
       <div className="outletdetails container">
         <div className="details container">
-          <button onClick={navigateToBookingPage}>Show Bookings</button>
+          <button
+            className="h-10 px-6 font-semibold rounded-md bg-black text-white mb-2"
+            onClick={navigateToBookingPage}
+          >
+            Show Bookings
+          </button>
         </div>
         <div className="details container">
-          <button onClick={navigateToCreatePage}>Create Outlet</button>
+          <button
+            className="h-10 px-6 font-semibold rounded-md bg-black text-white mb-2"
+            onClick={navigateToCreatePage}
+          >
+            Create Outlet
+          </button>
         </div>
         <div className="details container">
-          <button onClick={navigateToOutletPage}>Show Outlet</button>
+          <button
+            className="h-10 px-6 font-semibold rounded-md bg-black text-white mb-2"
+            onClick={navigateToOutletPage}
+          >
+            Show Outlet
+          </button>
         </div>
       </div>
-      <button onClick={returnToLogin}>Log out</button>
+      <button
+        className="h-10 px-6 font-semibold rounded-md bg-black text-white mb-2"
+        onClick={returnToLogin}
+      >
+        Log out
+      </button>
     </>
   );
 }

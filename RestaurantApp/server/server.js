@@ -6,8 +6,9 @@ const morgan = require("morgan");
 const path = require("path");
 const bookingController = require("./controllers/bookingController/bookingController");
 const userController = require("../server/controllers/userController/userController");
-const adminController = require("../server/controllers/adminController/adminController");
 const outletController = require("../server/controllers/outletController/outletController");
+const session = require("express-session");
+const sessionController = require("../server/controllers/sessionController/sessionController");
 
 //! CONFIGURATION AND CONNECTION
 const app = express();
@@ -24,10 +25,22 @@ mongoose.connect(MONGO_URI);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static("../client/dist"));
+
+//! SESSION
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    // cookie: { secure: true },
+  })
+);
+
+//! ROUTES
 app.use("/api/booking", bookingController);
 app.use("/api/user", userController);
-app.use("/api/admin", adminController);
 app.use("/api/outlet", outletController);
+app.use("/api/session", sessionController);
 
 //! TESTING
 app.get("/api/", (req, res) => {

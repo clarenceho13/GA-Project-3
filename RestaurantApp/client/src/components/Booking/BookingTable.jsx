@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 
 function BookingTable() {
@@ -14,7 +14,6 @@ function BookingTable() {
   }, []);
 
   // console.log("user._id", user._id);
-
   // console.log("booking", booking);
 
   const handleDelete = (id) => {
@@ -35,33 +34,43 @@ function BookingTable() {
   };
 
   return (
-    <table border="1">
+    <table className="border-separate border-spacing-2 border border-slate-500">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Hp</th>
-          <th>Email</th>
-          <th>Pax</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Outlet</th>
+          <th className="border border-slate-600 p-2">Name</th>
+          <th className="border border-slate-600 p-2">Hp</th>
+          <th className="border border-slate-600 p-2">Email</th>
+          <th className="border border-slate-600 p-2">Pax</th>
+          <th className="border border-slate-600 p-2">Date</th>
+          <th className="border border-slate-600 p-2">Time</th>
+          <th className="border border-slate-600 p-2">Outlet</th>
         </tr>
       </thead>
       <tbody>
         {booking.map((booking) => (
           <tr key={booking._id}>
-            <td>{booking.name}</td>
-            <td>{booking.hp}</td>
-            <td>{booking.email}</td>
-            <td>{booking.pax}</td>
-            <td>{booking.date}</td>
-            <td>{booking.time}</td>
-            <td>{booking.outlet.name}</td>
+            <td className="border border-slate-700 p-1">{booking.name}</td>
+            <td className="border border-slate-700 p-1">{booking.hp}</td>
+            <td className="border border-slate-700 p-1">{booking.email}</td>
+            <td className="border border-slate-700 p-1">{booking.pax}</td>
+            <td className="border border-slate-700 p-1">{booking.date}</td>
+            <td className="border border-slate-700 p-1">{booking.time}</td>
+            <td className="border border-slate-700 p-1">
+              {booking.outlet.name}
+            </td>
             <td>
-              <button onClick={() => navigateToEditPage(booking._id)}>
+              <button
+                className="h-10 px-6 font-semibold rounded-md bg-black text-white mb-2 mx-2"
+                onClick={() => navigateToEditPage(booking._id)}
+              >
                 Edit
               </button>
-              <button onClick={() => handleDelete(booking._id)}>X</button>
+              <button
+                className="h-10 px-6 font-semibold rounded-md bg-black text-white mb-2"
+                onClick={() => handleDelete(booking._id)}
+              >
+                X
+              </button>
             </td>
           </tr>
         ))}

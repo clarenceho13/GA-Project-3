@@ -1,58 +1,64 @@
-import React from "react";
 import AdminNavbar from "../Navbar/AdminNavbar";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 function CreateOutlet() {
   const navigate = useNavigate();
 
-  /* Setting the createBooking state to the value of the input fields. */
   const handleCreate = async (event) => {
     event.preventDefault();
-    /* Converting the form data into an object. */
     const formData = new FormData(event.target);
     const info = Object.fromEntries(formData);
     console.log(info);
 
-    /* Sending the createOutlet state to the database. */
     const response = await fetch("/api/outlet", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      /* Converting the object into a string. */
       body: JSON.stringify(info),
     });
-    /* Waiting for the response to be converted to JSON. */
     await response.json();
-    /* Redirecting the user to the booking page. */
     navigate("/admin/showoutlet");
   };
 
   return (
-    <div>
-      <div className="header container">
+    <div className="bg-blue-500 aspect-square">
+      <div className="text-4xl font-bold text-center border-8 rounded-full p-20 max-w-fit m-auto mb-10">
         <h1>Reservations</h1>
       </div>
 
-      <div className="body container">
-        <div className="navbar container">
+      <div className="text-xl font-bold text-center border-8 p-5 max-w-fit m-auto">
+        <div className="text-2xl font-bold text-center p-8 max-w-fit ml-1 mr-0">
           <AdminNavbar />
         </div>
-        <div className="calenderheader container">
+        <div className="text-5xl font-bold text-center p-8 max-w-fit ml-1 mr-0 underline">
           <h2>Create Outlet</h2>
         </div>
         <div className="calenderbody container">
-          <form onSubmit={handleCreate}>
+          <form
+            className="text-4xl font-bold text-left border-8 p-5 max-w-fit m-5 mt-2 p-3"
+            onSubmit={handleCreate}
+          >
             <fieldset>
               Name:
-              <input type="text" name="name" defaultValue="" />
+              <input
+                className="p-3 m-5"
+                type="text"
+                name="name"
+                defaultValue=""
+              />
               <br />
               Location:
-              <input type="text" name="location" defaultValue="" />
+              <input
+                className="p-3 m-5"
+                type="text"
+                name="location"
+                defaultValue=""
+              />
               <br />
               Opening Hours:
               <input
+                className="p-3 m-5"
                 type="text"
                 name="openinghours"
                 defaultValue="11:00 AM - 11:00 PM"
@@ -60,12 +66,26 @@ function CreateOutlet() {
               />
               <br />
               Hp:
-              <input type="text" name="hp" defaultValue="" min="8" max="8" />
+              <input
+                className="p-3 m-5"
+                type="text"
+                name="hp"
+                defaultValue=""
+                min="8"
+                max="8"
+              />
               <br />
               Email:
-              <input type="email" name="email" defaultValue="" />
+              <input
+                className="p-3 m-5"
+                type="email"
+                name="email"
+                defaultValue=""
+              />
               <br />
-              <button>Create</button>
+              <button className="h-10 px-6 font-semibold rounded-md bg-black text-white mb-2">
+                Create
+              </button>
             </fieldset>
           </form>
         </div>
@@ -75,6 +95,3 @@ function CreateOutlet() {
 }
 
 export default CreateOutlet;
-
-//exported createoutlet
-//this is the route for admin/createoutlet

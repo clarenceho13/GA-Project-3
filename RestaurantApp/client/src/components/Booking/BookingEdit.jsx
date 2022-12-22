@@ -4,67 +4,58 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../App";
 
 function BookingEdit() {
+  const navigate = useNavigate();
   const [selectedBooking, setSelectedBooking] = useState({});
   const { id } = useParams();
-  const navigate = useNavigate();
   const user = useContext(UserContext);
-
   // console.log(id);
-  /* Fetching the data from the database. */
+
+  //! Fetching the specific data from booking by Id.
   useEffect(() => {
     const fetchBooking = async () => {
       const response = await fetch(`/api/booking/user/${id}`);
       const data = await response.json();
-      /* Setting the state of selectedBooking to the data that is fetched from the database. */
+      //! Setting the state of selectedBooking to the specific booking data
       setSelectedBooking(data);
     };
     fetchBooking();
   }, []);
 
-  /* Setting the editedBooking state to the value of the input fields. */
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    //if else
-
-    /* Converting the form data into an object. */
     const formData = new FormData(event.target);
     const info = Object.fromEntries(formData);
     // console.log(info);
 
-    /* Sending the editedBooking state to the database. */
+    //! Sending the edited data to the database.
     const response = await fetch(`/api/booking/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      /* Converting the object into a string. */
       body: JSON.stringify(info),
     });
-
-    /* Waiting for the response to be converted to JSON. */
     await response.json();
-    /* Redirecting the user to the booking page. */
-    navigate(`/booking/${user._id}`);
+    navigate(`/booking/${user.username}`);
   };
 
   return (
-    <div>
-      <div className="header container">
+    <div className="bg-blue-500 aspect-square">
+      <div className="text-4xl font-bold text-center border-8 rounded-full p-20 max-w-fit m-auto mb-10">
         <h1>Reservations</h1>
       </div>
-      <div className="body container">
-        <div className="navbar container">
+      <div className="text-3xl font-bold text-center border-8 p-10 max-w-fit m-auto">
+        <div className="text-lg font-bold text-center p-3 max-w-fit m-auto mb-5">
           <Navbar />
         </div>
-        <div className="calenderheader container">
+        <div className="text-4xl font-bold text-center border-8 p-5 max-w-fit m-auto">
           <h2>Bookings</h2>
         </div>
-        <div className="calenderbody container">
-          <form onSubmit={handleSubmit}>
+        <div className="text-4xl font-bold text-center border-8 p-5 max-w-fit m-auto mt-2">
+          <form className="text-xl font-bold" onSubmit={handleSubmit}>
             <fieldset>
               Date & Time:
-              <p>
+              <p className="text-3xl font-bold underline m-3">
                 {selectedBooking.date} - {selectedBooking.time}
               </p>
               Name:
@@ -93,7 +84,9 @@ function BookingEdit() {
                 max={selectedBooking.pax}
                 defaultValue={selectedBooking.pax}
               />
-              <button>Update</button>
+              <button className="h-10 px-6 font-semibold rounded-md bg-black text-white mb-2">
+                Update
+              </button>
             </fieldset>
           </form>
         </div>
@@ -101,5 +94,4 @@ function BookingEdit() {
     </div>
   );
 }
-
 export default BookingEdit;

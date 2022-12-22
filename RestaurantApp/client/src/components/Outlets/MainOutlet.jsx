@@ -21,19 +21,21 @@ function MainOutlet() {
   }/${current.getFullYear()}`;
 
   return (
-    <div>
-      <div className="header container">
+    <div className="bg-blue-500 aspect-square">
+      <div className="text-4xl font-bold text-center border-8 rounded-full p-20 max-w-fit m-auto mb-10">
         <h1>Reservations</h1>
       </div>
-      <div className="body container">
-        <div className="navbar container">
+      <div className="text-3xl font-bold text-center border-8 p-10 max-w-fit m-auto">
+        <div className="text-2xl font-bold text-center p-8 max-w-fit ml-1 mr-0">
           <Navbar />
-          <div className="outletdetails container">
+          <div className="text-xl font-bold text-center border-8 p-5 max-w-fit m-auto">
             {outlet.map((outlet) => {
               return (
                 <div key={outlet._id}>
                   <div>
-                    <h2>{outlet.name}</h2>
+                    <h2 className="text-3xl font-bold underline m-1">
+                      {outlet.name}
+                    </h2>
                     <p>Location: {outlet.location}</p>
                     <h3>Contact us at:</h3>
                     <p>{outlet.hp}</p>
@@ -44,12 +46,14 @@ function MainOutlet() {
             })}
           </div>
         </div>
-        <div className="calenderheader container">
-          <h2>Make A Reservation</h2>
+        <div>
+          <h2 className="text-5xl font-bold underline m-2">
+            Make A Reservation
+          </h2>
         </div>
-        <div className="calenderbody container">
-          <div className="app">
-            <div className="calendar-container">
+        <div className="text-xl font-bold text-center border-8 p-5 max-w-fit m-auto">
+          <div className="text-2xl font-bold text-center border-8 p-5 max-w-fit m-auto">
+            <div className="text-3xl font-bold text-center  p-5 max-w-fit m-auto">
               <Calendar
                 onChange={setDate}
                 value={date}
@@ -63,10 +67,10 @@ function MainOutlet() {
                 maxDate={new Date(2023, 0, 31)}
               />
             </div>
-            <div className="App">
+            <div className="text-4xl font-bold text-center border-8 p-5 max-w-fit m-auto">
               <h1>Today is {currentDate}</h1>
             </div>
-            <div className="text-center">
+            <div className="text-4xl font-bold text-center border-8 p-5 max-w-fit m-auto mt-2">
               Selected date: {date.toDateString()}
             </div>
             <Time selectedDate={date.toDateString()} />
