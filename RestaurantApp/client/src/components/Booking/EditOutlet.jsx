@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminNavbar from '../Navbar/AdminNavbar';
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 //import { UserContext } from "../../App";
 
  function EditOutlet() {
@@ -51,46 +51,44 @@ import { useState, useEffect, useContext } from "react";
 
   return (
     <div>
-      <div className="header container">
-        <h1>Reservations</h1>
-      </div>
+      
       <div className="body container">
         <div className="navbar container">
-          <Navbar />
+          <AdminNavbar />
         </div>
-        <div className="calenderheader container">
-          <h2>Bookings</h2>
-        </div>
+        
         <div className="calenderbody container">
           <form onSubmit={handleSubmit}>
             <fieldset>
-              Date & Time:
-              <p>
-                {selectedBooking.date} - {selectedBooking.time}
-              </p>
-              Name:
+             Name: 
               <input
                 type="text"
                 name="name"
-                defaultValue={selectedBooking.name}
+                defaultValue={selectedOutlet.name}
               />
-              Hp:
+              Location:
               <input
-                type="number"
-                name="hp"
-                defaultValue={selectedBooking.hp}
+                type="text"
+                name="location"
+                defaultValue={selectedOutlet.location}
               />
-              Email
+              Opening Hours: 
+              <input
+                type="text"
+                name="openinghours"
+                defaultValue={selectedOutlet.openinghours}
+              />
+              hp:
+              <input
+                type="text"
+                name="hp"
+                defaultValue={selectedOutlet.hp}
+              />
+              Email: 
               <input
                 type="email"
                 name="email"
-                defaultValue={selectedBooking.email}
-              />
-              Pax:
-              <input
-                type="number"
-                name="pax"
-                defaultValue={selectedBooking.pax}
+                defaultValue={selectedOutlet.email}
               />
               <button>Update</button>
             </fieldset>
