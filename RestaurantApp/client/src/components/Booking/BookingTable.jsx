@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../App";
 
 function BookingTable() {
@@ -12,7 +12,11 @@ function BookingTable() {
       .then((response) => response.json())
       .then((data) => setBooking(data));
   }, []);
- console.log(booking)
+
+  // console.log("user._id", user._id);
+
+  // console.log("booking", booking);
+
   const handleDelete = (id) => {
     fetch(`/api/booking/${id}`, {
       method: "DELETE",
@@ -52,7 +56,7 @@ function BookingTable() {
             <td>{booking.pax}</td>
             <td>{booking.date}</td>
             <td>{booking.time}</td>
-        {/*<td>{booking.outlet.name}</td>*/}
+            <td>{booking.outlet.name}</td>
             <td>
               <button onClick={() => navigateToEditPage(booking._id)}>
                 Edit

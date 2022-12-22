@@ -11,12 +11,8 @@ function Navbar() {
           <div className="navbuttons container">My Bookings</div>
         </NavLink>
         <NavLink to={`/mainoutlet/${user.username}`} as={NavLink}>
-          <div className="navbuttons container">Main Outlet</div>
+          <div className="navbuttons container">Make A Reservation</div>
         </NavLink>
-        <NavLink to={`/outlet2/${user.username}`} as={NavLink}>
-          <div className="navbuttons container">Outlet2</div>
-        </NavLink>
-       
       </nav>
     </>
   );

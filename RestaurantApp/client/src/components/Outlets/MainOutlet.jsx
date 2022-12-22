@@ -8,10 +8,12 @@ function MainOutlet() {
   const [outlet, setOutlet] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/outlet/63a2a2799c4e1377c40e9fe1`)
+    fetch(`/api/outlet/`)
       .then((response) => response.json())
       .then((data) => setOutlet(data));
   }, []);
+
+  // console.log(outlet);
 
   const current = new Date();
   const currentDate = `${current.getDate()}/${
@@ -27,26 +29,23 @@ function MainOutlet() {
         <div className="navbar container">
           <Navbar />
           <div className="outletdetails container">
-            <div className="details container">
-              <h2>Location:</h2>
-              <p>{outlet.location}</p>
-            </div>
-            <div className="details container">
-              <h2>Opening Hours:</h2>
-              <p>{outlet.openinghours}</p>
-            </div>
-            <div className=" details container">
-              <h2>Contact Details</h2>
-              <p>
-                {outlet.hp}
-                <br />
-                {outlet.email}
-              </p>
-            </div>
+            {outlet.map((outlet) => {
+              return (
+                <div key={outlet._id}>
+                  <div>
+                    <h2>{outlet.name}</h2>
+                    <p>Location: {outlet.location}</p>
+                    <h3>Contact us at:</h3>
+                    <p>{outlet.hp}</p>
+                    <p>{outlet.email}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="calenderheader container">
-          <h2>Main Outlet</h2>
+          <h2>Make A Reservation</h2>
         </div>
         <div className="calenderbody container">
           <div className="app">
@@ -61,13 +60,7 @@ function MainOutlet() {
                     }-${current.getFullYear()}`
                   )
                 }
-                maxDate={
-                  new Date(
-                    `${current.getMonth() + 1}-${
-                      current.getDate() + 10
-                    }-${current.getFullYear()}`
-                  )
-                }
+                maxDate={new Date(2023, 0, 31)}
               />
             </div>
             <div className="App">

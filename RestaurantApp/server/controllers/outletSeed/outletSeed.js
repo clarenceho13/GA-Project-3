@@ -4,7 +4,7 @@ const seedOutlet = async (req, res) => {
   const seedOutlet = [
     {
       name: "Main Outlet",
-      location: "Marina Bay Sand, Level 2, #02-777",
+      location: "Marina Bay Sands, Level 2, #02-777",
       openinghours: "11:00 AM - 11:00 PM",
       hp: 62934924,
       email: "mainoutlet@email.com",
@@ -12,7 +12,7 @@ const seedOutlet = async (req, res) => {
     {
       name: "Outlet 2",
       location: "Tanjong Pagar Tower, Level 6, #06-12",
-      openinghours: "02:00 PM - 08:00 PM",
+      openinghours: "11:00 AM - 11:00 PM",
       hp: 62934925,
       email: "outlet2@email.com",
     },

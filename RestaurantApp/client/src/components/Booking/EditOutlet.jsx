@@ -1,14 +1,12 @@
-import React from 'react'
-import AdminNavbar from '../Navbar/AdminNavbar';
+import React from "react";
+import AdminNavbar from "../Navbar/AdminNavbar";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-//import { UserContext } from "../../App";
 
- function EditOutlet() {
-    const [selectedOutlet, setSelectedOutlet] = useState({});
+function EditOutlet() {
+  const [selectedOutlet, setSelectedOutlet] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
-  //const user = useContext(UserContext);
 
   console.log(id);
   /* Fetching the data from the database. */
@@ -25,8 +23,6 @@ import { useState, useEffect } from "react";
   /* Setting the editedBooking state to the value of the input fields. */
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    //if else
 
     /* Converting the form data into an object. */
     const formData = new FormData(event.target);
@@ -51,45 +47,34 @@ import { useState, useEffect } from "react";
 
   return (
     <div>
-      
+      <div className="header container">
+        <h1>Reservations</h1>
+      </div>
+
       <div className="body container">
         <div className="navbar container">
           <AdminNavbar />
         </div>
-        
+        <div className="calenderheader container">
+          <h2>Edit Outlet</h2>
+        </div>
         <div className="calenderbody container">
           <form onSubmit={handleSubmit}>
             <fieldset>
-             Name: 
+              Name:
               <input
                 type="text"
                 name="name"
                 defaultValue={selectedOutlet.name}
               />
+              <br />
               Location:
               <input
                 type="text"
                 name="location"
                 defaultValue={selectedOutlet.location}
               />
-              Opening Hours: 
-              <input
-                type="text"
-                name="openinghours"
-                defaultValue={selectedOutlet.openinghours}
-              />
-              hp:
-              <input
-                type="text"
-                name="hp"
-                defaultValue={selectedOutlet.hp}
-              />
-              Email: 
-              <input
-                type="email"
-                name="email"
-                defaultValue={selectedOutlet.email}
-              />
+              <br />
               <button>Update</button>
             </fieldset>
           </form>
@@ -99,8 +84,6 @@ import { useState, useEffect } from "react";
   );
 }
 
-
-  
 export default EditOutlet;
 
 //exported editoutlet

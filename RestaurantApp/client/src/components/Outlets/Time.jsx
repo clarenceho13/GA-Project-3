@@ -1,5 +1,4 @@
-import React, { useReducer } from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import ReactModal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
@@ -15,21 +14,28 @@ const reservationTiming = [
 
 function Time({ selectedDate }) {
   const [time, setTime] = useState("");
+  const [outlet, setOutlet] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selected, setSelected] = useState("63a2a2799c4e1377c40e9fe1");
+  const [selected, setSelected] = useState("");
   const user = useContext(UserContext);
- //console.log(user)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(`/api/outlet/`)
+      .then((response) => response.json())
+      .then((data) => setOutlet(data));
+  }, []);
+
+  // console.log(selected);
+
   function displayInfo(event) {
     setModalIsOpen(true);
     setTime(event.target.innerText);
   }
 
-  const navigate = useNavigate();
-
   const handleChange = (event) => {
     setSelected(event.target.value);
   };
-  console.log(selected)
 
   const createBooking = async (event) => {
     event.preventDefault();
@@ -39,9 +45,9 @@ function Time({ selectedDate }) {
     info.userid = `${user._id}`;
     info.outlet = selected;
 
-    // console.log(info);
+    // console.log("info", info);
     // console.log("infouserid", info.userid);
-     console.log(user._id);
+    // console.log(user._id);
 
     const response = await fetch(`/api/booking/${user._id}`, {
       method: "POST",
@@ -73,12 +79,25 @@ function Time({ selectedDate }) {
             Name:
             <input type="text" name="name" defaultValue={user.name}></input>
             <br />
-            HP:<input type="number" name="hp" defaultValue={user.hp}></input>
+            HP:
+            <input
+              type="number"
+              name="hp"
+              maxLength="8"
+              defaultValue={user.hp}
+            ></input>
             <br />
             Email:
             <input type="email" name="email" defaultValue={user.email}></input>
             <br />
-            Pax:<input type="number" name="pax" defaultValue=""></input>
+            Pax:
+            <input
+              type="number"
+              name="pax"
+              min="1"
+              max="8"
+              defaultValue=""
+            ></input>
             <br />
             Date:
             <input
@@ -93,8 +112,14 @@ function Time({ selectedDate }) {
             <br />
             Outlet:
             <select value={selected} onChange={handleChange}>
-              <option value="63a2a2799c4e1377c40e9fe2">Main Outlet</option>
-              <option value="63a2a2799c4e1377c40e9fe1">Outlet2</option>
+              <option></option>
+              {outlet.map((outlet) => {
+                return (
+                  <option key={outlet._id} value={outlet._id}>
+                    {outlet.name}
+                  </option>
+                );
+              })}
             </select>
             <br />
             <button>Submit</button>

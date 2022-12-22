@@ -16,7 +16,7 @@ const Login = ({ callback }) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const info = Object.fromEntries(formData);
-    console.log(info);
+    // console.log(info);
 
     const response = await fetch("/api/admin/login", {
       method: "POST",

@@ -9,7 +9,7 @@ function BookingEdit() {
   const navigate = useNavigate();
   const user = useContext(UserContext);
 
-  console.log(id);
+  // console.log(id);
   /* Fetching the data from the database. */
   useEffect(() => {
     const fetchBooking = async () => {
@@ -30,7 +30,7 @@ function BookingEdit() {
     /* Converting the form data into an object. */
     const formData = new FormData(event.target);
     const info = Object.fromEntries(formData);
-    console.log(info);
+    // console.log(info);
 
     /* Sending the editedBooking state to the database. */
     const response = await fetch(`/api/booking/${id}`, {
@@ -89,6 +89,8 @@ function BookingEdit() {
               <input
                 type="number"
                 name="pax"
+                min="1"
+                max={selectedBooking.pax}
                 defaultValue={selectedBooking.pax}
               />
               <button>Update</button>

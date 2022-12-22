@@ -2,9 +2,15 @@ import Navbar from "../Navbar/Navbar";
 import BookingTable from "./BookingTable";
 import { useContext } from "react";
 import { UserContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 function Booking() {
+  const navigate = useNavigate();
   const user = useContext(UserContext);
+
+  const logout = () => {
+    navigate("/");
+  };
 
   return (
     <div>
@@ -26,7 +32,7 @@ function Booking() {
               <p> Email: {user.email} </p>
             </div>
             <div className=" details container">
-              <button>Log Out</button>
+              <button onClick={logout}>Log Out</button>
             </div>
           </div>
         </div>

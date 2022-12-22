@@ -27,4 +27,27 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//! Create Outlet
+router.post("/", async (req, res) => {
+  try {
+    const outlet = await Outlet.create(req.body);
+    res.status(201).json(outlet);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+//! Update Outlet
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const outlet = await Outlet.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.json(outlet);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 module.exports = router;

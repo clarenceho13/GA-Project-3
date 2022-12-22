@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// //! Get specific booking data (edit table)
+//! Get specific booking data (edit table)
 router.get("/user/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -35,7 +35,17 @@ router.get("/:userid", async (req, res) => {
     // const booking = await Booking.find({ userid }).exec();
     // console.log("booking", booking);
     const booking = await Booking.find({ userid }).populate("outlet");
-    console.log("booking", booking);
+    res.status(200).json(booking);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//! Get specific booking data (admin booking table)
+router.get("/admin/:outletid", async (req, res) => {
+  const { outletid } = req.params;
+  try {
+    const booking = await Booking.find({ outlet: outletid }).populate("outlet");
     res.status(200).json(booking);
   } catch (error) {
     res.status(500).json(error);

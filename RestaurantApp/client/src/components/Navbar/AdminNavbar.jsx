@@ -1,25 +1,38 @@
-import { NavLink } from "react-router-dom";
-import React from 'react'
+import { useNavigate } from "react-router-dom";
 
- function AdminNavbar() {
+function AdminNavbar() {
+  const navigate = useNavigate();
+  const navigateToBookingPage = () => {
+    navigate("/adminbooking");
+  };
+
+  const navigateToCreatePage = () => {
+    navigate("/admin/createoutlet");
+  };
+
+  const navigateToOutletPage = () => {
+    navigate("/admin/showoutlet");
+  };
+
+  const returnToLogin = () => {
+    navigate("/");
+  };
+
   return (
-    <div>
-      <nav id="navBar">
-      <NavLink to= "/admin/createoutlet" as={NavLink}>
-          <div className="navbuttons container">Create Outlet</div>
-        </NavLink>
-        <NavLink to="/admin/editoutlet" as={NavLink}>
-          <div className="navbuttons container">Edit Outlet</div>
-        </NavLink>
-        <NavLink to="/admin/showoutlet" as={NavLink}>
-          <div className="navbuttons container">Show Outlets</div>
-        </NavLink>
-      </nav>
-    </div>
-  )
+    <>
+      <div className="outletdetails container">
+        <div className="details container">
+          <button onClick={navigateToBookingPage}>Show Bookings</button>
+        </div>
+        <div className="details container">
+          <button onClick={navigateToCreatePage}>Create Outlet</button>
+        </div>
+        <div className="details container">
+          <button onClick={navigateToOutletPage}>Show Outlet</button>
+        </div>
+      </div>
+      <button onClick={returnToLogin}>Log out</button>
+    </>
+  );
 }
-
 export default AdminNavbar;
-
-//add routes for /admin/createoutlet and /admin/mainoutlet
-//next thing to do is put it into admin booking
